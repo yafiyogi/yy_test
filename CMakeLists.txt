@@ -29,7 +29,7 @@
 
 cmake_minimum_required(VERSION 3.24)
 
-project(yy_test LANGUAGES CXX)
+project(yy_test LANGUAGES CXX VERSION 0.0.1)
 
 set(YY_ROOT "${PROJECT_SOURCE_DIR}/..")
 set(YY_CMAKE "${YY_ROOT}/yy_cmake")
@@ -40,10 +40,24 @@ add_library(yy_test STATIC)
 
 target_sources(yy_test
   PRIVATE
-    yy_test_count.cpp)
+    yy_test_count.cpp
+  PUBLIC FILE_SET HEADERS
+    FILES
+      yy_test_count.h)
 
-set(YY_TEST_HEADERS
-  yy_test_count.h )
+install(TARGETS yy_test
+  EXPORT yy_testTargets
+  FILE_SET HEADERS DESTINATION include/yy_test)
 
-install(TARGETS yy_test )
-install(FILES ${YY_TEST_HEADERS} DESTINATION include/yy_test )
+install(EXPORT yy_testTargets
+  FILE yy_testTargets.cmake
+  NAMESPACE yy_test::
+  DESTINATION lib/cmake/yy_test)
+
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file("yy_testConfigVersion.cmake"
+  VERSION ${yy_test_VERSION}
+  COMPATIBILITY AnyNewerVersion)
+
+install(FILES "yy_testConfig.cmake" "${CMAKE_CURRENT_BINARY_DIR}/yy_testConfigVersion.cmake"
+    DESTINATION lib/cmake/yy_test)
