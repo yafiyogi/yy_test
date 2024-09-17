@@ -26,7 +26,10 @@
 
 #pragma once
 
+#include "fmt/core.h"
+
 namespace yafiyogi::yy_test {
+
 class TestCount final
 {
   public:
@@ -48,3 +51,25 @@ class TestCount final
 };
 
 } // namespace yafiyogi::yy_test
+
+namespace fmt {
+
+template <>
+struct formatter<yafiyogi::yy_test::TestCount>
+{
+    template <typename ParseContext>
+    constexpr auto parse(ParseContext & ctx)
+    {
+      return ctx.begin();
+    }
+
+    template <typename FormatContext>
+    auto format(const yafiyogi::yy_test::TestCount & v,
+                FormatContext & ctx)
+    {
+      return format_to(ctx.out(), "{}", v.value());
+    }
+};
+
+
+} // namespace fmt

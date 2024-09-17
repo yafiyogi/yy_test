@@ -31,13 +31,21 @@ cmake_minimum_required(VERSION 3.24)
 
 project(yy_test LANGUAGES CXX VERSION 0.0.1)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS)
 set(YY_ROOT "${PROJECT_SOURCE_DIR}/..")
 set(YY_CMAKE "${YY_ROOT}/yy_cmake")
 
 include(${YY_CMAKE}/cmake_common.txt)
+
 include(${YY_CMAKE}/cmake_clang_tidy.txt)
 
+find_package(fmt REQUIRED)
+
 add_library(yy_test STATIC)
+
+target_include_directories(yy_test
+  PRIVATE
+    "${YY_THIRD_PARTY_LIBRARY}/include" )
 
 target_sources(yy_test
   PRIVATE
