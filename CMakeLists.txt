@@ -44,7 +44,7 @@ find_package(fmt REQUIRED)
 add_library(yy_test STATIC)
 
 target_include_directories(yy_test
-  PRIVATE
+  SYSTEM PRIVATE
     "${YY_THIRD_PARTY_LIBRARY}/include" )
 
 target_sources(yy_test
