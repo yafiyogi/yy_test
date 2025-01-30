@@ -2,7 +2,7 @@
 
   MIT License
 
-  Copyright (c) 2024 Yafiyogi
+  Copyright (c) 2024-2025 Yafiyogi
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
@@ -55,7 +55,7 @@ class TestCount final
 namespace fmt {
 
 template <>
-struct formatter<yafiyogi::yy_test::TestCount>
+struct formatter<yafiyogi::yy_test::TestCount> final
 {
     template <typename ParseContext>
     constexpr auto parse(ParseContext & ctx)
