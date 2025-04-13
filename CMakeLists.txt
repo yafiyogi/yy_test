@@ -59,7 +59,6 @@ install(TARGETS yy_test
   FILE_SET HEADERS DESTINATION include/yy_test)
 
 install(EXPORT yy_testTargets
-  FILE yy_testTargets.cmake
   NAMESPACE yy_test::
   DESTINATION lib/cmake/yy_test)
 
