@@ -69,3 +69,5 @@ write_basic_package_version_file("yy_testConfigVersion.cmake"
 
 install(FILES "yy_testConfig.cmake" "${CMAKE_CURRENT_BINARY_DIR}/yy_testConfigVersion.cmake"
     DESTINATION lib/cmake/yy_test)
+
+add_yy_tidy_targets(yy_test)
