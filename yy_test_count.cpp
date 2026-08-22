@@ -26,6 +26,27 @@
 
 #include "yy_test_count.h"
 
+namespace fmt {
+
+template <>
+struct formatter<yafiyogi::yy_test::TestCount> final
+{
+    template <typename ParseContext>
+    constexpr auto parse(ParseContext & ctx)
+    {
+      return ctx.begin();
+    }
+
+    template <typename FormatContext>
+    auto format(const yafiyogi::yy_test::TestCount & v,
+                FormatContext & ctx)
+    {
+      return format_to(ctx.out(), "{}", v.value());
+    }
+};
+
+}
+
 namespace yafiyogi::yy_test {
 
 TestCount::TestCount() noexcept
